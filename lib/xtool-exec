@@ -1,0 +1,7 @@
+# This file is expected to be source from a toolwrapper script
+#
+# Everything is expected to be ready to find the right command
+# in the right place
+
+# Launch the tool
+${XTOOL_CMD} "$@"

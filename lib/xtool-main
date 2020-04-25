@@ -1,0 +1,69 @@
+# This file is expected to be source from a xtool wrapper script
+#
+# Some variables are required to work properly. In example:
+#  - XTOOL_NAME=oc
+#  - XTOOL_VERSION_VAR=OC_VERSION
+#  - XTOOL_BASEDIR=${HOME}/opt/${XTOOL_NAME}
+#  - XTOOL_BINDIRS=bin
+#  - XTOOL_LIBDIRS=
+
+# Check for required variables
+if [ -z ${XTOOL_NAME+x} ] || [ -z ${XTOOL_VERSION_VAR} ]; then
+  echo "Toolwrapper error: Missing variables XTOOL_NAME and/or XTOOL_VERSION_VAR."
+  echo "Check your toolwrapper (${0}) configuration. Exiting..."
+  exit
+fi
+
+# Use ${HOME}/opt as default location for software if not defined
+XTOOL_BASEDIR=${XTOOL_BASEDIR:-${HOME}/opt/${XTOOL_NAME}}
+# Use "default" as version if not defined
+XTOOL_VERSION=${!XTOOL_VERSION_VAR:-"default"}
+# Get the binary name from the symlinked file and compose the directory
+XTOOL_DIR=${XTOOL_BASEDIR}/${XTOOL_VERSION}
+XTOOL_CMD=`basename $0`
+
+# Validate the composed names and directories
+if [ ! -d ${XTOOL_DIR} ]; then
+  echo "Toolwrapper error: Missing ${XTOOL_DIR} directory."
+  echo "Check your toolwrapper (${0}) configuration. Exiting..."
+  exit
+fi
+
+# Include extra libraries defined in ${XTOOL_LIBDIR}
+# and extra binaries defined in ${XTOOL_BINDIR}
+OIFS=${IFS}; IFS=,
+for LIBDIR in ${XTOOL_LIBDIRS}; do
+  export LD_LIBRARY_PATH=${XTOOL_DIR}/${LIBDIR}:${LD_LIBRARY_PATH}
+done
+
+export PATH=${XTOOL_DIR}:${PATH}
+for BINDIR in ${XTOOL_BINDIRS}; do
+  export PATH=${XTOOL_DIR}/${BINDIR}:${PATH}
+done
+IFS=${OIFS}
+
+# Check for --xtool-info argument to show help
+if [ "$1" == "--xtool-info" ]; then
+  echo "XTool info:
+  - XTOOL_NAME: ${XTOOL_NAME}
+  - XTOOL_VERSION: ${XTOOL_VERSION}
+  - XTOOL_DIR: ${XTOOL_DIR}"
+  echo
+
+  echo -e "Available versions (for \$${XTOOL_VERSION_VAR}):"
+  for version in `ls -1 ${XTOOL_BASEDIR} | grep -v bin`; do
+    echo -n "  - ${version}"
+    if [ "$version" == "default" ]; then
+      echo " (`readlink ${XTOOL_BASEDIR}/${version}`)"
+    fi
+    echo
+  done
+
+  echo -e "Other variables:
+  - CMD: ${XTOOL_CMD}
+  - PATH:\n    - ${PATH//:/\\n    - }
+  - LD_LIBRARY_PATH:\n    - ${LD_LIBRARY_PATH//:/\\n    - }"
+  echo
+
+  exit
+fi

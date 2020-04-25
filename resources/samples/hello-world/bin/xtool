@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Configure tool variables
+XTOOL_NAME=hello-world
+XTOOL_VERSION_VAR=XTOOL_HELLO_VERSION
+
+# Include the main code from the xtool
+source ${HOME}/opt/bin/xtool-main
+
+# Launch the tool using the exec code from the xtool
+source ${HOME}/opt/bin/xtool-exec
+
