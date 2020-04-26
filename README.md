@@ -124,8 +124,8 @@ installation instructions and their `xtool` scripts:
 | Software | README | Ready |
 | -------- | ------ | ----- |
 | go | [resources/guides/go.md][guides-go] | Yes |
-| oc | [resources/guides/oc.md][guides-oc] | Yes |
-| openshift-installer | [resources/guides-openshift-installer.md][guides-openshift-installer] | To be done |
+| openshift-client (oc) | [resources/guides/openshift-client.md][guides-openshift-client] | Yes |
+| openshift-installer | [resources/guides-openshift-installer.md][guides-openshift-installer] | Yes |
 | postman | [resources/giudes/postman.md][guides-postman] | To be done |
 | sidequest | [resources/guides/sidequest.md][guides-sidequest] | To be done |
 | vscode | [resources/guides/vscode.md][guides-vscode] | Yes |
@@ -157,7 +157,7 @@ specific language governing permissions and limitations under the License.
 [Twitter]:http://twitter.com/soukron
 [guides-crc]: <https://github.com/soukron/xtool/tree/master/resources/guides/crc.md>
 [guides-go]: <https://github.com/soukron/xtool/tree/master/resources/guides/go.md>
-[guides-oc]: <https://github.com/soukron/xtool/tree/master/resources/guides/oc.md>
+[guides-openshift-client]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-client.md>
 [guides-openshift-installer]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-installer.md>
 [guides-postman]: <https://github.com/soukron/xtool/tree/master/resources/guides/postman.md>
 [guides-sidequest]: <https://github.com/soukron/xtool/tree/master/resources/guides/sidequest.md>
