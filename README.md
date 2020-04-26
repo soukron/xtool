@@ -126,7 +126,7 @@ installation instructions and their `xtool` scripts:
 | go | [resources/guides/go.md][guides-go] | Yes |
 | openshift-client (oc) | [resources/guides/openshift-client.md][guides-openshift-client] | Yes |
 | openshift-installer | [resources/guides-openshift-installer.md][guides-openshift-installer] | Yes |
-| postman | [resources/giudes/postman.md][guides-postman] | To be done |
+| postman | [resources/giudes/postman.md][guides-postman] | Yes |
 | sidequest | [resources/guides/sidequest.md][guides-sidequest] | To be done |
 | vscode | [resources/guides/vscode.md][guides-vscode] | Yes |
 
