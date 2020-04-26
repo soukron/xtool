@@ -121,13 +121,16 @@ $ tree ${HOME}/opt
 See a list of some tools that I use with XTool wrapper including their 
 installation instructions and their `xtool` scripts:
 
-| Software | README | Ready |
+| Software | Installation Guide | Ready |
 | -------- | ------ | ----- |
+| aws-cli | [resources/guides/aws.md][guides-aws] | To be done |
+| betaflight-configurator | [resources/guides/betaflight.md][guides-betaflight] | To be done |
+| cura | [resources/guides/cura.md][guides-cura] | To be done |
 | go | [resources/guides/go.md][guides-go] | Yes |
 | openshift-client (oc) | [resources/guides/openshift-client.md][guides-openshift-client] | Yes |
 | openshift-installer | [resources/guides-openshift-installer.md][guides-openshift-installer] | Yes |
 | postman | [resources/giudes/postman.md][guides-postman] | Yes |
-| sidequest | [resources/guides/sidequest.md][guides-sidequest] | To be done |
+| sidequest | [resources/guides/sidequest.md][guides-sidequest] | Yes |
 | vscode | [resources/guides/vscode.md][guides-vscode] | Yes |
 
 
@@ -155,7 +158,9 @@ CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 
 [Twitter]:http://twitter.com/soukron
-[guides-crc]: <https://github.com/soukron/xtool/tree/master/resources/guides/crc.md>
+[guides-aws]: <https://github.com/soukron/xtool/tree/master/resources/guides/aws.md>
+[guides-betaflight]: <https://github.com/soukron/xtool/tree/master/resources/guides/betaflight.md>
+[guides-cura]: <https://github.com/soukron/xtool/tree/master/resources/guides/cura.md>
 [guides-go]: <https://github.com/soukron/xtool/tree/master/resources/guides/go.md>
 [guides-openshift-client]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-client.md>
 [guides-openshift-installer]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-installer.md>
