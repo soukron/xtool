@@ -57,40 +57,16 @@ before sourcing the two scripts:
 
 
 ## Installation
-Create the directory where all your software will reside (`${HOME}/opt` by default):
+Clone [or download](https://github.com/soukron/xtool/releases) this repository:
 ```sh
-$ mkdir ${HOME}/opt
-$ mkdir ${HOME}/opt/bin
-$ mkdir ${HOME}/opt/xtool
+$ wget https://github.com/soukron/xtool/archive/master.tar.gz
+$ tar xfz master.tar.gz
 ```
 
-Create the directory for the version which you're installing (in example `1.0.0`):
+Run the installer:
 ```sh
-$ cd ${HOME}/opt/xtool
-$ mkdir 1.0.0
-```
-
-Download the release from [xtool downloads page](https://github.com/soukron/xtool/releases) and extract it `xtool` and extract it:
-```sh
-$ wget https://github.com/soukron/xtool/archive/v1.0.0.tar.gz
-$ tar xfz v1.0.0.tar.gz --strip-components 1 -C 1.0.0
-```
-
-Create a symbolic link to `1.0.0` directory to make it the default version:
-```sh
-$ ln -s 1.0.0 default
-```
-
-Link the scripts in `${HOME}/opt/bin`:
-```sh
-$ cd ${HOME}/opt/bin
-$ ln -s ../xtool/default/lib/xtool-exec
-$ ln -s ../xtool/default/lib/xtool-main
-```
-
-Cleanup the downloaded file:
-```sh
-$ rm -fr ${HOME}/opt/xtool/v1.0.0.tar.gz
+$ cd xtool-master
+$ bin/install.sh
 ```
 
 **IMPORTANT**: Remember to add `${HOME}/opt/bin` to your `${PATH}` in `.bashrc` or any
@@ -157,6 +133,7 @@ installation instructions and their `xtool` scripts:
 
 ## Todo
 - Better error handling
+- Make the software directory configurable at installation time
 - Add `--xtool-set-default` parameter to change the default version of a tool
 - Add `xtool-cmd` as an standalone script to list and manage the installed software
 - Create a plugin system to delegate the installation/addition/removal of software
