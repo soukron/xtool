@@ -4,26 +4,28 @@
 ## Installation
 Create the directory for Go versions:
 ```sh
-$ mkdir ${HOME}/opt/go
-$ cd ${HOME}/opt/go
+$ mkdir ${HOME}/opt/go && cd $_
 ```
 
-Download one of the stable releases of [Go](https://golang.org/dl/) and extract it:
+Create the directory for the version which you're installing (in example `1.13.10`):
 ```sh
-$ wget https://dl.google.com/go/go1.13.10.linux-amd64.tar.gz
-$ tar xfz go1.13.10.linux-amd64.tar.gz
+$ mkdir 1.13.10
 ```
 
-Rename the extracted `go` directory as `1.13.10` and create a `default` symbolic link:
+Create a symbolic link to `1.13.10` directory to make it the default version:
 ```sh
-$ mv go 1.13.10
 $ ln -s 1.13.10 default
 ```
 
-Create the `xtool` wrapper in `bin`:
+Download the release from [Go downloads page](https://golang.org/dl/) and extract it:
 ```sh
-$ mkdir bin
-$ cd bin
+$ wget https://dl.google.com/go/go1.13.10.linux-amd64.tar.gz
+$ tar xfz go1.13.10.linux-amd64.tar.gz --strip-components 1 -C 1.13.10
+```
+
+Create the `bin` directory and the `xtool` wrapper:
+```sh
+$ mkdir bin && cd $_
 $ cat <<EOF > xtool
 #!/bin/bash
 
@@ -45,35 +47,44 @@ EOF
 $ chmod +x xtool
 ```
 
-Link the `xtool` wrapper with the name of the binaries (go, gofmt):
+Link the `xtool` wrapper with the name of the binaries (`go`, `gofmt`):
 ```sh
 $ ln -s xtool go
 $ ln -s xtool gofmt
 ```
 
-Link the binaries in the top directory `${HOME}/opt/bin`:
+Link the binaries again but this time in the top directory `${HOME}/opt/bin`:
 ```sh
 $ cd ${HOME}/opt/bin
 $ ln -s ../go/bin/go
 $ ln -s ../go/bin/gofmt
 ```
 
+Cleanup the downloaded file:
+```sh
+$ rm -fr ${HOME}/opt/go/go1.13.10.linux-amd64.tar.gz
+```
+
 
 ## Adding a new version
-Download the desired release of [Go](https://golang.org/dl/) and extract it:
+Create the directory for the version which you're adding (in example `1.14.2`):
 ```sh
 $ cd ${HOME}/opt/go
-$ wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
-$ tar xfz go1.14.2.linux-amd64.tar.gz
+$ mkdir 1.14.2
 ```
 
-Rename the extracted `go` directory as `1.14.2`:
+Download the release from [Go downloads page](https://golang.org/dl/) and extract it:
 ```sh
-$ mv go 1.14.2
-$ ln -s 1.14.2 default
+$ wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+$ tar xfz go1.14.2.linux-amd64.tar.gz --strip-components 1 -C 1.14.2
 ```
 
-Optionally, edit the `default` symbolic link to the new version:
+Cleanup the downloaded file:
+```sh
+$ rm -fr ${HOME}/opt/go/go1.14.2.linux-amd64.tar.gz
+```
+
+Optionally, point the symbolic link to `1.14.2` directory to make it the default version:
 ```sh
 $ ln -sf 1.14.2 default
 ```

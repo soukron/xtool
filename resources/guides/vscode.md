@@ -4,27 +4,28 @@
 ## Installation
 Create the directory for Visual Studio Code versions:
 ```sh
-$ mkdir ${HOME}/opt/vscode
-$ cd ${HOME}/opt/vscode
+$ mkdir ${HOME}/opt/vscode && cd $_
 ```
 
-Download one of the releases of [Visual Studio Code](https://code.visualstudio.com/download) and extract it:
+Create the directory for the version which you're installing (in example `1.42`):
 ```sh
-$ wget https://go.microsoft.com/fwlink/?LinkID=320381 -O vscode-1.42.tar.gz
-$ tar xfz vscode-1.42.tar.gz
+$ mkdir 1.42
 ```
 
-Rename the extracted `VSCode-linux-x64` directory as `1.42` and create a
-`default` symbolic link:
+Create a symbolic link to `1.42` directory to make it the default version:
 ```sh
-$ mv VSCode-linux-x64 1.42
 $ ln -s 1.42 default
 ```
 
-Create the `xtool` wrapper in `bin`:
+Download the release from [Visual Studio Code downloads page](https://code.visualstudio.com/download) and extract it:
 ```sh
-$ mkdir bin
-$ cd bin
+$ wget https://go.microsoft.com/fwlink/?LinkID=320381 -O vscode-1.42.tar.gz
+$ tar xfz vscode-1.42.tar.gz --strip-components 1 -C 1.42
+```
+
+Create the `bin` directory and the `xtool` wrapper:
+```sh
+$ mkdir bin && cd $_
 $ cat <<EOF > xtool
 #!/bin/bash
 
@@ -32,7 +33,6 @@ $ cat <<EOF > xtool
 XTOOL_NAME=vscode
 XTOOL_VERSION_VAR=VSCODE_VERSION
 XTOOL_BINDIRS=bin
-XTOOL_LIBDIRS=
 
 # Include the main code from the xtool
 source ${HOME}/opt/bin/xtool-main
@@ -43,33 +43,42 @@ EOF
 $ chmod +x xtool
 ```
 
-Link the `xtool` wrapper with the name of the binaries (code):
+Link the `xtool` wrapper with the name of the binaries (`code`):
 ```sh
 $ ln -s xtool code
 ```
 
-Link the binaries in the top directory `${HOME}/opt/bin`:
+Link the binaries again but this time in the top directory `${HOME}/opt/bin`:
 ```sh
 $ cd ${HOME}/opt/bin
 $ ln -s ../vscode/bin/code
 ```
 
+Cleanup the downloaded file:
+```sh
+$ rm -fr ${HOME}/opt/vscode/vscode-1.42.tar.gz
+```
+
 
 ## Adding a new version
-Download one of the releases of [Visual Studio Code](https://code.visualstudio.com/download) and extract it:
+Create the directory for the version which you're adding (in example `1.44`):
 ```sh
 $ cd ${HOME}/opt/vscode
-$ wget https://go.microsoft.com/fwlink/?LinkID=620884 -O vscode-1.44.tar.gz
-$ tar xfz vscode-1.44.tar.gz
+$ mkdir 1.44
 ```
 
-Rename the extracted `VSCode-linux-x64` directory as `1.44` and create a
-`default` symbolic link:
+Download the release from [Visual Studio Code downloads page](https://code.visualstudio.com/download) and extract it:
 ```sh
-$ mv VSCode-linux-x64 1.44
+$ wget https://go.microsoft.com/fwlink/?LinkID=620884 -O vscode-1.44.tar.gz
+$ tar xfz vscode-1.44.tar.gz --strip-components 1 -C 1.44
 ```
 
-Optionally, edit the `default` symbolic link to the new version:
+Cleanup the downloaded file:
+```sh
+$ rm -fr ${HOME}/opt/vscode/vscode-1.44.tar.gz
+```
+
+Optionally, point the symbolic link to `1.44` directory to make it the default version:
 ```sh
 $ ln -sf 1.44 default
 ```

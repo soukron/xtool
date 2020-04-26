@@ -10,6 +10,10 @@ XTool wrapper is useful when dealing with software distributed as binary file
 situations where you must keep different versions of the same software and being
 able change between versions easily.
 
+XTool is not meant to be a package manager replacement. If you're happy with the
+software distributed in repositories, that's probably the best way to manage your
+software.
+
 
 ## Demo
 ![Demo Overview](resources/asciinema/overview-ascii.gif)
@@ -57,18 +61,23 @@ Create the directory where all your software will reside (`${HOME}/opt` by defau
 ```sh
 $ mkdir ${HOME}/opt
 $ mkdir ${HOME}/opt/bin
+$ mkdir ${HOME}/opt/xtool
 ```
 
-Download the latest release of `xtool` and extract it in `${HOME}/opt/xtool/`:
+Create the directory for the version which you're installing (in example `1.0.0`):
 ```sh
-$ mkdir -p ${HOME}/opt/xtool && cd $_
-$ wget https://github.com/soukron/xtool/archive/v1.0.0.zip
-$ unzip v1.0.0.zip
+$ cd ${HOME}/opt/xtool
+$ mkdir 1.0.0
 ```
 
-Rename the `xtool-v1.0.0` directory and create a `default` symbolic link:
+Download the release from [xtool downloads page](https://github.com/soukron/xtool/releases) and extract it `xtool` and extract it:
 ```sh
-$ mv xtool-v1.0.0 1.0.0
+$ wget https://github.com/soukron/xtool/archive/v1.0.0.tar.gz
+$ tar xfz v1.0.0.tar.gz --strip-components 1 -C 1.0.0
+```
+
+Create a symbolic link to `1.0.0` directory to make it the default version:
+```sh
 $ ln -s 1.0.0 default
 ```
 
@@ -79,7 +88,12 @@ $ ln -s ../xtool/default/lib/xtool-exec
 $ ln -s ../xtool/default/lib/xtool-main
 ```
 
-**Note**: Remember to add `${HOME}/opt/bin` to your `${PATH}` in `.bashrc` or any
+Cleanup the downloaded file:
+```sh
+$ rm -fr ${HOME}/opt/xtool/v1.0.0.tar.gz
+```
+
+**IMPORTANT**: Remember to add `${HOME}/opt/bin` to your `${PATH}` in `.bashrc` or any
 other init script you have.
 
 
@@ -127,14 +141,14 @@ $ tree ${HOME}/opt
 ```
   
 
-## Reference installations
+## Installation guides
 See a list of some tools that I use with XTool wrapper including their 
 installation instructions and their `xtool` scripts:
 
 | Software | README | Ready |
 | -------- | ------ | ----- |
 | go | [resources/guides/go.md][guides-go] | Yes |
-| oc | [resources/guides/oc.md][guides-oc] | To be done |
+| oc | [resources/guides/oc.md][guides-oc] | Yes |
 | openshift-installer | [resources/guides-openshift-installer.md][guides-openshift-installer] | To be done |
 | postman | [resources/giudes/postman.md][guides-postman] | To be done |
 | sidequest | [resources/guides/sidequest.md][guides-sidequest] | To be done |
@@ -145,6 +159,7 @@ installation instructions and their `xtool` scripts:
 - Better error handling
 - Add `--xtool-set-default` parameter to change the default version of a tool
 - Add `xtool-cmd` as an standalone script to list and manage the installed software
+- Create a plugin system to delegate the installation/addition/removal of software
 
 ## Contact
 Reach me in [Twitter] or email in soukron _at_ gmbros.net
