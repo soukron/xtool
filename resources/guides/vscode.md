@@ -30,9 +30,9 @@ $ cat <<EOF > xtool
 #!/bin/bash
 
 # Configure tool variables
-XTOOL_NAME=vscode
-XTOOL_VERSION_VAR=VSCODE_VERSION
-XTOOL_BINDIRS=bin
+export XTOOL_NAME=vscode
+export XTOOL_VERSION_VAR=VSCODE_VERSION
+export XTOOL_BINDIRS=bin
 
 # Include the main code from the xtool
 source ${HOME}/opt/bin/xtool-main

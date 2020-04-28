@@ -30,10 +30,10 @@ $ cat <<EOF > xtool
 #!/bin/bash
 
 # Configure tool variables
-XTOOL_NAME=go
-XTOOL_VERSION_VAR=XTOOL_GO_VERSION
-XTOOL_BINDIRS=bin
-XTOOL_LIBDIRS=lib
+export XTOOL_NAME=go
+export XTOOL_VERSION_VAR=XTOOL_GO_VERSION
+export XTOOL_BINDIRS=bin
+export XTOOL_LIBDIRS=lib
 
 # Include the main code from the xtool
 source ${HOME}/opt/bin/xtool-main

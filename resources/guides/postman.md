@@ -30,9 +30,9 @@ $ cat <<EOF > xtool
 #!/bin/bash
 
 # Configure tool variables
-XTOOL_NAME=postman
-XTOOL_VERSION_VAR=XTOOL_POSTMAN_VERSION
-XTOOL_BINDIRS=app
+export XTOOL_NAME=postman
+export XTOOL_VERSION_VAR=XTOOL_POSTMAN_VERSION
+export XTOOL_BINDIRS=app
 
 # Include the main code from the xtool
 source ${HOME}/opt/bin/xtool-main

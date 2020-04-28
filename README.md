@@ -26,8 +26,8 @@ $ cat ${HOME}/opt/hello-world/bin/xtool
 #!/bin/bash
 
 # Configure xtool variables
-XTOOL_NAME=hello-world
-XTOOL_VERSION_VAR=XTOOL_HELLO_VERSION
+export XTOOL_NAME=hello-world
+export XTOOL_VERSION_VAR=XTOOL_HELLO_VERSION
 
 # Include the main code from the xtool wrapper
 source ${HOME}/opt/bin/xtool-main
@@ -128,7 +128,7 @@ installation instructions and their `xtool` scripts:
 | cura | [resources/guides/cura.md][guides-cura] | To be done |
 | go | [resources/guides/go.md][guides-go] | Yes |
 | openshift-client (oc) | [resources/guides/openshift-client.md][guides-openshift-client] | Yes |
-| openshift-installer | [resources/guides-openshift-installer.md][guides-openshift-installer] | Yes |
+| openshift-install | [resources/guides-openshift-install.md][guides-openshift-install] | Yes |
 | postman | [resources/giudes/postman.md][guides-postman] | Yes |
 | sidequest | [resources/guides/sidequest.md][guides-sidequest] | Yes |
 | vscode | [resources/guides/vscode.md][guides-vscode] | Yes |
@@ -163,7 +163,7 @@ specific language governing permissions and limitations under the License.
 [guides-cura]: <https://github.com/soukron/xtool/tree/master/resources/guides/cura.md>
 [guides-go]: <https://github.com/soukron/xtool/tree/master/resources/guides/go.md>
 [guides-openshift-client]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-client.md>
-[guides-openshift-installer]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-installer.md>
+[guides-openshift-install]: <https://github.com/soukron/xtool/tree/master/resources/guides/openshift-install.md>
 [guides-postman]: <https://github.com/soukron/xtool/tree/master/resources/guides/postman.md>
 [guides-sidequest]: <https://github.com/soukron/xtool/tree/master/resources/guides/sidequest.md>
 [guides-vscode]: <https://github.com/soukron/xtool/tree/master/resources/guides/vscode.md>

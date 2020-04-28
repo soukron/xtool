@@ -30,8 +30,8 @@ $ cat <<EOF > xtool
 #!/bin/bash
 
 # Configure tool variables
-XTOOL_NAME=sidequest
-XTOOL_VERSION_VAR=XTOOL_SIDEQUEST_VERSION
+export XTOOL_NAME=sidequest
+export XTOOL_VERSION_VAR=XTOOL_SIDEQUEST_VERSION
 
 # Include the main code from the xtool
 source ${HOME}/opt/bin/xtool-main
