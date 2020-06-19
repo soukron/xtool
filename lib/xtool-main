@@ -15,12 +15,31 @@ if [ -z ${XTOOL_NAME+x} ] || [ -z ${XTOOL_VERSION_VAR} ]; then
 fi
 
 # Use ${HOME}/opt as default location for software if not defined
-XTOOL_BASEDIR=${XTOOL_BASEDIR:-${HOME}/opt/${XTOOL_NAME}}
+export XTOOL_BASEDIR=${XTOOL_BASEDIR:-${HOME}/opt/${XTOOL_NAME}}
 # Use "default" as version if not defined
-XTOOL_VERSION=${!XTOOL_VERSION_VAR:-"default"}
+export XTOOL_VERSION=${!XTOOL_VERSION_VAR:-"default"}
 # Get the binary name from the symlinked file and compose the directory
-XTOOL_DIR=${XTOOL_BASEDIR}/${XTOOL_VERSION}
-XTOOL_CMD=`basename $0`
+export XTOOL_DIR=${XTOOL_BASEDIR}/${XTOOL_VERSION}
+export XTOOL_CMD=`basename $0`
+
+# Check for --xtool-add-release argument to invoke the helper function
+if [ "$1" == "--xtool-add-release" ]; then
+  if [ -z ${2} ]; then
+    echo "Toolwrapper error: Missing version to install."
+    echo "Syntax: ${0} --xtool-add-release <version>"
+    echo "Exiting..."
+    exit
+  fi
+
+  declare -f -F addRelease > /dev/null
+  if [ ! -z $? ]; then
+    addRelease ${2} ${3}
+  else
+    echo "Toolwrapper error: Missing addRelease() function."
+    echo "Check your toolwrapper (${0}) configuration. Exiting..."
+  fi
+  exit
+fi
 
 # Validate the composed names and directories
 if [ ! -d ${XTOOL_DIR} ]; then

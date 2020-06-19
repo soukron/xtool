@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Configure tool variables
+export XTOOL_NAME=openshift-install
+export XTOOL_VERSION_VAR=XTOOL_OPENSHIFT_INSTALL_VERSION
+
+# (Optional) Helper function to download new releases
+function addRelease() {
+  XTOOL_BINARIES="openshift-install"
+  XTOOL_DOWNLOAD_URL=https://mirror.openshift.com/pub/openshift-v4/clients/ocp/__VERSION__/openshift-install-linux-__VERSION__.tar.gz
+  XTOOL_DOWNLOAD_FORMAT=tar.gz
+
+  mkdir -p ${XTOOL_BASEDIR}/${1}
+
+  [ ! -L ${XTOOL_BASEDIR}/default ] && ln -sf ${1} ${XTOOL_BASEDIR}/default
+
+  wget ${XTOOL_DOWNLOAD_URL//__VERSION__/${1}} -O /tmp/${XTOOL_NAME}.${XTOOL_DOWNLOAD_FORMAT}
+  tar xfz /tmp/${XTOOL_NAME}.${XTOOL_DOWNLOAD_FORMAT} -C ${XTOOL_BASEDIR}/${1}
+
+  for BINARY in ${XTOOL_BINARIES}; do
+    chmod +x ${XTOOL_BASEDIR}/${1}/${BINARY}
+    ln -fs xtool ${XTOOL_BASEDIR}/bin/${BINARY}
+    ln -fs ../${XTOOL_NAME}/bin/${BINARY} ${HOME}/opt/bin/${BINARY}
+  done
+
+  rm /tmp/${XTOOL_NAME}.${XTOOL_DOWNLOAD_FORMAT}
+}
+
+# Include the main code from the xtool
+source ${HOME}/opt/bin/xtool-main
+
+# Launch the tool using the exec code from the xtool
+source ${HOME}/opt/bin/xtool-exec
+
